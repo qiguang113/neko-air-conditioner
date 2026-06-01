@@ -1,0 +1,355 @@
+:root {
+  --page: #f7fbfc;
+  --ink: #28313a;
+  --muted: #6f7b86;
+  --line: #dfe8ed;
+  --panel: #ffffff;
+  --brand: #59c4e5;
+  --brand-dark: #2292bd;
+  --cold: #3467d6;
+  --hot: #f59d25;
+  --power: #ef4d80;
+  --on: #32d074;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--ink);
+  background:
+    linear-gradient(180deg, #ffffff 0%, var(--page) 54%, #edf7f7 100%);
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", Arial, sans-serif;
+}
+
+button {
+  font: inherit;
+}
+
+.app {
+  width: min(520px, calc(100vw - 32px));
+  margin: 0 auto;
+  padding: 42px 0 18px;
+}
+
+.masthead {
+  display: grid;
+  justify-items: center;
+  gap: 10px;
+  margin-bottom: 22px;
+  text-align: center;
+}
+
+.brand-mark {
+  width: 128px;
+  height: 36px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 3px;
+}
+
+h1 {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 560;
+  letter-spacing: 0;
+}
+
+.tip {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 15px;
+}
+
+.tip svg {
+  width: 20px;
+  height: 20px;
+  fill: currentColor;
+}
+
+.ac {
+  position: relative;
+  height: 156px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 10px 10px 22px 22px;
+  background:
+    radial-gradient(circle at 18% 0%, rgba(89, 196, 229, .18), transparent 32%),
+    linear-gradient(180deg, #ffffff 0%, #f9fcfd 66%, #f1f6f8 100%);
+  box-shadow:
+    0 22px 60px rgba(33, 84, 110, .12),
+    0 7px 18px rgba(30, 54, 64, .12),
+    inset 0 1px 0 #ffffff;
+}
+
+.ac::before {
+  content: "";
+  position: absolute;
+  inset: auto 18px 28px;
+  height: 12px;
+  border-radius: 20px;
+  background:
+    repeating-linear-gradient(90deg, #cfdce2 0 12px, transparent 12px 24px),
+    linear-gradient(180deg, #eef4f6, #dbe7ec);
+  opacity: .9;
+}
+
+.ac-topline {
+  height: 12px;
+  margin-top: 10px;
+  border-top: 1px solid #e5edf1;
+  border-bottom: 1px solid #eff4f6;
+  background: rgba(255, 255, 255, .78);
+}
+
+.ac-logo {
+  position: absolute;
+  top: 36px;
+  left: 24px;
+  width: 92px;
+  height: 24px;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 2px;
+}
+
+.display {
+  position: absolute;
+  top: 32px;
+  right: 28px;
+  display: grid;
+  justify-items: end;
+  min-width: 112px;
+  color: #a7b1b8;
+  opacity: .45;
+  transition: color .25s ease, opacity .25s ease;
+}
+
+.app.is-on .display {
+  color: var(--brand-dark);
+  opacity: 1;
+}
+
+.app.is-hot .display {
+  color: #d46f00;
+}
+
+.mode-label {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.temperature {
+  display: inline-flex;
+  align-items: baseline;
+  line-height: 1;
+  font-variant-numeric: tabular-nums;
+}
+
+.temperature b {
+  font-size: 42px;
+  font-weight: 420;
+}
+
+.temperature i {
+  font-size: 24px;
+  font-style: normal;
+}
+
+.status-light {
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #cfd8dc;
+  box-shadow: 0 0 0 5px rgba(207, 216, 220, .2);
+  transition: background .25s ease, box-shadow .25s ease;
+}
+
+.app.is-on .status-light {
+  background: var(--on);
+  box-shadow: 0 0 0 5px rgba(50, 208, 116, .18), 0 0 18px rgba(50, 208, 116, .7);
+}
+
+.wind {
+  display: flex;
+  justify-content: space-around;
+  width: min(430px, 82%);
+  height: 56px;
+  margin: 22px auto 8px;
+  opacity: 0;
+  transition: opacity .35s ease;
+}
+
+.app.is-on .wind {
+  opacity: 1;
+}
+
+.wind span {
+  width: 7px;
+  height: 54px;
+  border-radius: 999px;
+  background: linear-gradient(180deg, rgba(89, 196, 229, .08), rgba(34, 146, 189, .46), rgba(89, 196, 229, .05));
+  transform: rotate(var(--tilt));
+  animation: breathe 1.4s ease-in-out infinite;
+  animation-delay: var(--delay);
+}
+
+.app.is-hot .wind span {
+  background: linear-gradient(180deg, rgba(245, 157, 37, .08), rgba(245, 157, 37, .48), rgba(245, 157, 37, .05));
+}
+
+.remote {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  margin: 14px auto 0;
+}
+
+.remote.stack {
+  display: grid;
+  gap: 14px;
+  width: 76px;
+}
+
+.control {
+  display: grid;
+  place-items: center;
+  width: 64px;
+  height: 64px;
+  border: 0;
+  border-radius: 50%;
+  color: #ffffff;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  box-shadow:
+    0 11px 22px rgba(37, 55, 66, .18),
+    0 3px 6px rgba(37, 55, 66, .16);
+  transition: transform .16s ease, box-shadow .16s ease, filter .16s ease, opacity .16s ease;
+}
+
+.control svg {
+  width: 31px;
+  height: 31px;
+}
+
+.control:active {
+  transform: translateY(2px) scale(.96);
+  box-shadow:
+    0 7px 14px rgba(37, 55, 66, .15),
+    0 2px 5px rgba(37, 55, 66, .12);
+}
+
+.control:focus-visible {
+  outline: 3px solid rgba(89, 196, 229, .45);
+  outline-offset: 4px;
+}
+
+.control.active {
+  filter: saturate(1.18) brightness(1.03);
+}
+
+.cold {
+  background: var(--cold);
+}
+
+.hot {
+  background: var(--hot);
+}
+
+.power {
+  background: var(--power);
+}
+
+.app.is-on .power {
+  background: #28b865;
+}
+
+.step {
+  width: 62px;
+  height: 48px;
+  border-radius: 999px;
+  color: #34434d;
+  background: #e7edf0;
+}
+
+.footer {
+  margin: 14px 0 28px;
+  color: #82909a;
+  font-size: 14px;
+  text-align: center;
+}
+
+@keyframes breathe {
+  0%,
+  100% {
+    transform: translateY(-1px) rotate(var(--tilt)) scaleY(.78);
+    opacity: .44;
+  }
+
+  50% {
+    transform: translateY(7px) rotate(var(--tilt)) scaleY(1.08);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 420px) {
+  .app {
+    width: min(100vw - 24px, 520px);
+    padding-top: 30px;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  .ac {
+    height: 148px;
+  }
+
+  .ac-logo {
+    left: 18px;
+    width: 82px;
+    height: 22px;
+  }
+
+  .display {
+    right: 20px;
+  }
+
+  .temperature b {
+    font-size: 38px;
+  }
+
+  .remote {
+    gap: 12px;
+  }
+
+  .control {
+    width: 58px;
+    height: 58px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: .01ms !important;
+  }
+}

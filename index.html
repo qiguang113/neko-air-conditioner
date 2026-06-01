@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="format-detection" content="telephone=no">
+    <title>N.E.K.O 便携小空调</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <main class="app" aria-label="N.E.K.O 便携小空调">
+      <header class="masthead">
+        <img class="brand-mark" src="./assets/neko-logo.png" alt="N.E.K.O">
+        <h1>便携小空调</h1>
+        <p class="tip">
+          <svg aria-hidden="true" viewBox="0 0 24 24">
+            <path d="M15 14c2.76 0 5-2.24 5-5s-2.24-5-5-5c-1.62 0-3.05.77-3.97 1.96A6.49 6.49 0 0 0 2 12.5C2 16.09 4.91 19 8.5 19H16c2.21 0 4-1.79 4-4 0-.34-.04-.67-.12-.98A5.47 5.47 0 0 1 15 14Zm-6.5 3A4.5 4.5 0 0 1 4 12.5 4.5 4.5 0 0 1 8.5 8c.84 0 1.64.23 2.34.66l.88.54.47-.92A3.13 3.13 0 0 1 15 6a3 3 0 1 1 0 6h-2v1a4 4 0 0 0 4 4h-8.5Z"/>
+          </svg>
+          Tip: 为你的屏幕吹点小风
+        </p>
+      </header>
+
+      <section class="ac" aria-label="空调面板">
+        <div class="ac-topline"></div>
+        <img class="ac-logo" src="./assets/neko-logo.png" alt="">
+        <div class="display" aria-live="polite">
+          <span class="mode-label" id="modeLabel">COLD</span>
+          <span class="temperature"><b id="temperature">20</b><i>°C</i></span>
+        </div>
+        <span class="status-light" id="statusLight"></span>
+      </section>
+
+      <div class="wind" id="wind" aria-hidden="true">
+        <span style="--tilt:-12deg; --delay:0s;"></span>
+        <span style="--tilt:-4deg; --delay:.12s;"></span>
+        <span style="--tilt:7deg; --delay:.24s;"></span>
+      </div>
+
+      <section class="remote" aria-label="空调遥控器">
+        <button class="control cold active" type="button" id="coldButton" aria-label="制冷" title="制冷">
+          <svg aria-hidden="true" viewBox="0 0 24 24">
+            <path d="M12 2v20M17 4l-5 4-5-4M17 20l-5-4-5 4M2 12h20M4 7l4 5-4 5M20 7l-4 5 4 5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+          </svg>
+        </button>
+        <button class="control power" type="button" id="powerButton" aria-label="开关" title="开关">
+          <svg aria-hidden="true" viewBox="0 0 24 24">
+            <path d="M12 2v10" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"/>
+            <path d="M18.4 6.6a9 9 0 1 1-12.8 0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"/>
+          </svg>
+        </button>
+        <button class="control hot" type="button" id="hotButton" aria-label="制热" title="制热">
+          <svg aria-hidden="true" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"/>
+          </svg>
+        </button>
+      </section>
+
+      <section class="remote stack" aria-label="温度">
+        <button class="control step" type="button" id="plusButton" aria-label="升温" title="升温">
+          <svg aria-hidden="true" viewBox="0 0 24 24">
+            <path d="m18 15-6-6-6 6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"/>
+          </svg>
+        </button>
+        <button class="control step" type="button" id="minusButton" aria-label="降温" title="降温">
+          <svg aria-hidden="true" viewBox="0 0 24 24">
+            <path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"/>
+          </svg>
+        </button>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <span id="year"></span> © N.E.K.O Air
+    </footer>
+
+    <script src="./script.js"></script>
+  </body>
+</html>

@@ -88,6 +88,8 @@ function render() {
 }
 
 function selectFeature(featureName) {
+  app.classList.add("is-detail-open");
+
   featureButtons.forEach((button) => {
     const isActive = button.dataset.feature === featureName;
     button.classList.toggle("active", isActive);
@@ -1106,5 +1108,4 @@ window.addEventListener("keydown", (event) => {
 
 year.textContent = new Date().getFullYear();
 resetWifiProfile();
-selectFeature("wifi");
 render();

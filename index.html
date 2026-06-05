@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="format-detection" content="telephone=no">
     <title>N.E.K.O 功能中心</title>
-    <link rel="stylesheet" href="./styles.css?v=wifi-tune-arc">
+    <link rel="stylesheet" href="./styles.css?v=center-column">
   </head>
   <body>
     <main class="app" aria-label="N.E.K.O 功能中心">
@@ -18,8 +18,8 @@
       </header>
 
       <div class="feature-shell">
-        <nav class="feature-list" aria-label="功能列表">
-          <button class="feature-item active" type="button" data-feature="air" aria-controls="airFeature">
+        <nav class="feature-list" aria-label="功能入口">
+          <button class="feature-item" type="button" data-section="air" data-feature="air" aria-controls="airFeature">
             <span class="feature-icon air" aria-hidden="true">
               <svg viewBox="0 0 24 24">
                 <path d="M15 14c2.76 0 5-2.24 5-5s-2.24-5-5-5c-1.62 0-3.05.77-3.97 1.96A6.49 6.49 0 0 0 2 12.5C2 16.09 4.91 19 8.5 19H16c2.21 0 4-1.79 4-4 0-.34-.04-.67-.12-.98A5.47 5.47 0 0 1 15 14Zm-6.5 3A4.5 4.5 0 0 1 4 12.5 4.5 4.5 0 0 1 8.5 8c.84 0 1.64.23 2.34.66l.88.54.47-.92A3.13 3.13 0 0 1 15 6a3 3 0 1 1 0 6h-2v1a4 4 0 0 0 4 4h-8.5Z"/>
@@ -31,7 +31,7 @@
             </span>
             <span class="feature-state" id="airFeatureState">待机</span>
           </button>
-          <button class="feature-item" type="button" data-feature="wifi" aria-controls="wifiFeature">
+          <button class="feature-item" type="button" data-section="network" data-feature="wifi" aria-controls="wifiFeature">
             <span class="feature-icon wifi" aria-hidden="true">
               <svg viewBox="0 0 24 24">
                 <path d="M5 13.2a10.5 10.5 0 0 1 14 0M8.2 16.2a5.8 5.8 0 0 1 7.6 0M11.3 19.2a1.2 1.2 0 0 1 1.4 0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.2"/>
@@ -43,7 +43,7 @@
             </span>
             <span class="feature-state" id="wifiFeatureState">待连接</span>
           </button>
-          <button class="feature-item" type="button" disabled>
+          <button class="feature-item" type="button" data-section="planned" disabled>
             <span class="feature-icon focus" aria-hidden="true">
               <svg viewBox="0 0 24 24">
                 <path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
@@ -56,7 +56,7 @@
             </span>
             <span class="feature-state muted">待添加</span>
           </button>
-          <button class="feature-item" type="button" disabled>
+          <button class="feature-item" type="button" data-section="planned" disabled>
             <span class="feature-icon sleep" aria-hidden="true">
               <svg viewBox="0 0 24 24">
                 <path d="M20 14.2A7.5 7.5 0 0 1 9.8 4 8.5 8.5 0 1 0 20 14.2Z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2"/>
@@ -71,7 +71,7 @@
         </nav>
 
         <section class="feature-stage" aria-live="polite">
-          <section class="feature-panel air-feature active" id="airFeature" aria-label="便携小空调">
+          <section class="feature-panel air-feature" id="airFeature" aria-label="便携小空调">
             <header class="tool-heading">
               <h2>便携小空调</h2>
               <p class="tip">
@@ -218,6 +218,6 @@
       <span id="year"></span> © N.E.K.O Air
     </footer>
 
-    <script src="./script.js?v=wifi-tune-arc"></script>
+    <script src="./script.js?v=center-column"></script>
   </body>
 </html>

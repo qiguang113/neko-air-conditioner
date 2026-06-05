@@ -25,6 +25,7 @@ const wifiReadout = document.querySelector("#wifiReadout");
 const wifiStatusbar = document.querySelector(".wifi-statusbar");
 const featureButtons = document.querySelectorAll("[data-feature]");
 const featurePanels = document.querySelectorAll(".feature-panel");
+const stageCloseButton = document.querySelector("#stageCloseButton");
 
 const PASSWORD_SEPARATOR = "-";
 const WIFI_SEED_KEY = "nekoWifiSeed";
@@ -89,6 +90,7 @@ function render() {
 
 function selectFeature(featureName) {
   app.classList.add("is-detail-open");
+  document.body.classList.add("has-detail-open");
 
   featureButtons.forEach((button) => {
     const isActive = button.dataset.feature === featureName;
@@ -104,6 +106,36 @@ function selectFeature(featureName) {
     const isActive = panel.id === `${featureName}Feature`;
     panel.classList.toggle("active", isActive);
   });
+}
+
+function closeFeatureDetail() {
+  const hadActiveCrack = Boolean(wifiState.crackGameId);
+
+  app.classList.remove("is-detail-open");
+  document.body.classList.remove("has-detail-open");
+  clearCrackTimer();
+
+  featureButtons.forEach((button) => {
+    button.classList.remove("active");
+    button.removeAttribute("aria-current");
+  });
+
+  featurePanels.forEach((panel) => {
+    panel.classList.remove("active");
+  });
+
+  if (hadActiveCrack) {
+    wifiState.crackGameId = null;
+    wifiState.crackNetworkId = null;
+    resetDodgeRun();
+    wifiState.tuneHits = 0;
+    wifiState.tuneValue = 50;
+    wifiState.wireDirection = 1;
+    wifiState.wirePulse = WIRE_MIN;
+    wifiState.wireTimeLeft = 100;
+    wifiState.wireStep = 0;
+    renderWifi();
+  }
 }
 
 function hashSeed(value) {
@@ -1035,6 +1067,7 @@ featureButtons.forEach((button) => {
   });
 });
 
+stageCloseButton.addEventListener("click", closeFeatureDetail);
 wifiConnectButton.addEventListener("click", connectWifi);
 wifiCrackButton.addEventListener("click", startWifiCrack);
 wifiScanButton.addEventListener("click", scanWifi);
@@ -1071,6 +1104,12 @@ wifiPuzzleList.addEventListener("pointerdown", (event) => {
 window.addEventListener("keydown", (event) => {
   const key = event.key.toLowerCase();
   const target = event.target;
+
+  if (key === "escape" && app.classList.contains("is-detail-open")) {
+    event.preventDefault();
+    closeFeatureDetail();
+    return;
+  }
 
   if (target instanceof Element && target.matches("input, textarea")) return;
 

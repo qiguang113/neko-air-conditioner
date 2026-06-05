@@ -4,76 +4,220 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="format-detection" content="telephone=no">
-    <title>N.E.K.O 便携小空调</title>
-    <link rel="stylesheet" href="./styles.css">
+    <title>N.E.K.O 功能中心</title>
+    <link rel="stylesheet" href="./styles.css?v=wifi-tune-arc">
   </head>
   <body>
-    <main class="app" aria-label="N.E.K.O 便携小空调">
+    <main class="app" aria-label="N.E.K.O 功能中心">
       <header class="masthead">
         <img class="brand-mark" src="./assets/neko-logo.png" alt="N.E.K.O">
-        <h1>便携小空调</h1>
-        <p class="tip">
-          <svg aria-hidden="true" viewBox="0 0 24 24">
-            <path d="M15 14c2.76 0 5-2.24 5-5s-2.24-5-5-5c-1.62 0-3.05.77-3.97 1.96A6.49 6.49 0 0 0 2 12.5C2 16.09 4.91 19 8.5 19H16c2.21 0 4-1.79 4-4 0-.34-.04-.67-.12-.98A5.47 5.47 0 0 1 15 14Zm-6.5 3A4.5 4.5 0 0 1 4 12.5 4.5 4.5 0 0 1 8.5 8c.84 0 1.64.23 2.34.66l.88.54.47-.92A3.13 3.13 0 0 1 15 6a3 3 0 1 1 0 6h-2v1a4 4 0 0 0 4 4h-8.5Z"/>
-          </svg>
-          Tip: 为你的屏幕吹点小风
-        </p>
+        <div class="masthead-copy">
+          <h1>N.E.K.O 功能中心</h1>
+          <p>把常用小工具收在一起</p>
+        </div>
       </header>
 
-      <section class="ac" aria-label="空调面板">
-        <div class="ac-topline"></div>
-        <img class="ac-logo" src="./assets/neko-logo.png" alt="">
-        <div class="display" aria-live="polite">
-          <span class="mode-label" id="modeLabel">COLD</span>
-          <span class="temperature"><b id="temperature">20</b><i>°C</i></span>
-        </div>
-        <span class="status-light" id="statusLight"></span>
-      </section>
+      <div class="feature-shell">
+        <nav class="feature-list" aria-label="功能列表">
+          <button class="feature-item active" type="button" data-feature="air" aria-controls="airFeature">
+            <span class="feature-icon air" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M15 14c2.76 0 5-2.24 5-5s-2.24-5-5-5c-1.62 0-3.05.77-3.97 1.96A6.49 6.49 0 0 0 2 12.5C2 16.09 4.91 19 8.5 19H16c2.21 0 4-1.79 4-4 0-.34-.04-.67-.12-.98A5.47 5.47 0 0 1 15 14Zm-6.5 3A4.5 4.5 0 0 1 4 12.5 4.5 4.5 0 0 1 8.5 8c.84 0 1.64.23 2.34.66l.88.54.47-.92A3.13 3.13 0 0 1 15 6a3 3 0 1 1 0 6h-2v1a4 4 0 0 0 4 4h-8.5Z"/>
+              </svg>
+            </span>
+            <span class="feature-copy">
+              <strong>便携小空调</strong>
+              <span>冷暖风 · 16-30°C</span>
+            </span>
+            <span class="feature-state" id="airFeatureState">待机</span>
+          </button>
+          <button class="feature-item" type="button" data-feature="wifi" aria-controls="wifiFeature">
+            <span class="feature-icon wifi" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M5 13.2a10.5 10.5 0 0 1 14 0M8.2 16.2a5.8 5.8 0 0 1 7.6 0M11.3 19.2a1.2 1.2 0 0 1 1.4 0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.2"/>
+              </svg>
+            </span>
+            <span class="feature-copy">
+              <strong>猫娘 Wi-Fi</strong>
+              <span>随机热点 · 破解密码</span>
+            </span>
+            <span class="feature-state" id="wifiFeatureState">待连接</span>
+          </button>
+          <button class="feature-item" type="button" disabled>
+            <span class="feature-icon focus" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M12 7v5l3 2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                <circle cx="12" cy="12" r="8" fill="none" stroke="currentColor" stroke-width="2"/>
+              </svg>
+            </span>
+            <span class="feature-copy">
+              <strong>专注计时</strong>
+              <span>轻提醒</span>
+            </span>
+            <span class="feature-state muted">待添加</span>
+          </button>
+          <button class="feature-item" type="button" disabled>
+            <span class="feature-icon sleep" aria-hidden="true">
+              <svg viewBox="0 0 24 24">
+                <path d="M20 14.2A7.5 7.5 0 0 1 9.8 4 8.5 8.5 0 1 0 20 14.2Z" fill="none" stroke="currentColor" stroke-linejoin="round" stroke-width="2"/>
+              </svg>
+            </span>
+            <span class="feature-copy">
+              <strong>睡眠声景</strong>
+              <span>白噪音</span>
+            </span>
+            <span class="feature-state muted">待添加</span>
+          </button>
+        </nav>
 
-      <div class="wind" id="wind" aria-hidden="true">
-        <span style="--tilt:-12deg; --delay:0s;"></span>
-        <span style="--tilt:-4deg; --delay:.12s;"></span>
-        <span style="--tilt:7deg; --delay:.24s;"></span>
+        <section class="feature-stage" aria-live="polite">
+          <section class="feature-panel air-feature active" id="airFeature" aria-label="便携小空调">
+            <header class="tool-heading">
+              <h2>便携小空调</h2>
+              <p class="tip">
+                <svg aria-hidden="true" viewBox="0 0 24 24">
+                  <path d="M15 14c2.76 0 5-2.24 5-5s-2.24-5-5-5c-1.62 0-3.05.77-3.97 1.96A6.49 6.49 0 0 0 2 12.5C2 16.09 4.91 19 8.5 19H16c2.21 0 4-1.79 4-4 0-.34-.04-.67-.12-.98A5.47 5.47 0 0 1 15 14Zm-6.5 3A4.5 4.5 0 0 1 4 12.5 4.5 4.5 0 0 1 8.5 8c.84 0 1.64.23 2.34.66l.88.54.47-.92A3.13 3.13 0 0 1 15 6a3 3 0 1 1 0 6h-2v1a4 4 0 0 0 4 4h-8.5Z"/>
+                </svg>
+                Tip: 为你的屏幕吹点小风
+              </p>
+            </header>
+
+            <section class="ac" aria-label="空调面板">
+              <div class="ac-topline"></div>
+              <img class="ac-logo" src="./assets/neko-logo.png" alt="">
+              <div class="display" aria-live="polite">
+                <span class="mode-label" id="modeLabel">COLD</span>
+                <span class="temperature"><b id="temperature">20</b><i>°C</i></span>
+              </div>
+              <span class="status-light" id="statusLight"></span>
+            </section>
+
+            <div class="wind" id="wind" aria-hidden="true">
+              <span style="--tilt:-12deg; --delay:0s;"></span>
+              <span style="--tilt:-4deg; --delay:.12s;"></span>
+              <span style="--tilt:7deg; --delay:.24s;"></span>
+            </div>
+
+            <section class="remote" aria-label="空调遥控器">
+              <button class="control cold active" type="button" id="coldButton" aria-label="制冷" title="制冷">
+                <svg aria-hidden="true" viewBox="0 0 24 24">
+                  <path d="M12 2v20M17 4l-5 4-5-4M17 20l-5-4-5 4M2 12h20M4 7l4 5-4 5M20 7l-4 5 4 5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                </svg>
+              </button>
+              <button class="control power" type="button" id="powerButton" aria-label="开关" title="开关">
+                <svg aria-hidden="true" viewBox="0 0 24 24">
+                  <path d="M12 2v10" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"/>
+                  <path d="M18.4 6.6a9 9 0 1 1-12.8 0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"/>
+                </svg>
+              </button>
+              <button class="control hot" type="button" id="hotButton" aria-label="制热" title="制热">
+                <svg aria-hidden="true" viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
+                  <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"/>
+                </svg>
+              </button>
+            </section>
+
+            <section class="remote stack" aria-label="温度">
+              <button class="control step" type="button" id="plusButton" aria-label="升温" title="升温">
+                <svg aria-hidden="true" viewBox="0 0 24 24">
+                  <path d="m18 15-6-6-6 6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"/>
+                </svg>
+              </button>
+              <button class="control step" type="button" id="minusButton" aria-label="降温" title="降温">
+                <svg aria-hidden="true" viewBox="0 0 24 24">
+                  <path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"/>
+                </svg>
+              </button>
+            </section>
+          </section>
+
+          <section class="feature-panel wifi-feature" id="wifiFeature" aria-label="猫娘 Wi-Fi">
+            <header class="tool-heading">
+              <h2>猫娘 Wi-Fi</h2>
+              <p class="tip">
+                <svg aria-hidden="true" viewBox="0 0 24 24">
+                  <path d="M5 13.2a10.5 10.5 0 0 1 14 0M8.2 16.2a5.8 5.8 0 0 1 7.6 0M11.3 19.2a1.2 1.2 0 0 1 1.4 0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.2"/>
+                </svg>
+                Tip: 随机小游戏拿密钥
+              </p>
+            </header>
+
+            <section class="wifi-statusbar" aria-label="Wi-Fi 状态">
+              <span class="wifi-badge" aria-hidden="true">
+                <svg viewBox="0 0 24 24">
+                  <path d="M5 13.2a10.5 10.5 0 0 1 14 0M8.2 16.2a5.8 5.8 0 0 1 7.6 0M11.3 19.2a1.2 1.2 0 0 1 1.4 0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2.2"/>
+                </svg>
+              </span>
+              <span class="wifi-current">
+                <small>当前连接</small>
+                <strong id="wifiCurrentName">未连接</strong>
+                <em id="wifiStatusText">等待选择热点</em>
+              </span>
+              <span class="wifi-bars" id="wifiCurrentSignal" aria-label="当前信号"></span>
+            </section>
+
+            <div class="wifi-grid">
+              <section class="wifi-panel" aria-label="Wi-Fi 菜单">
+                <div class="wifi-panel-head">
+                  <h3>Wi-Fi 菜单</h3>
+                  <button class="mini-button" type="button" id="wifiShuffleButton" aria-label="刷新 Wi-Fi 菜单" title="刷新 Wi-Fi 菜单">
+                    <svg aria-hidden="true" viewBox="0 0 24 24">
+                      <path d="M20 7v5h-5M4 17v-5h5M18.2 9A6.5 6.5 0 0 0 7 6.4L4 9M5.8 15A6.5 6.5 0 0 0 17 17.6L20 15" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                    </svg>
+                  </button>
+                </div>
+                <div class="wifi-network-list" id="wifiNetworkList"></div>
+              </section>
+
+              <section class="wifi-panel" aria-label="破解 Wi-Fi">
+                <label class="field-label" for="wifiPassword">连接密钥</label>
+                <div class="wifi-password-row">
+                  <input id="wifiPassword" type="text" autocomplete="off" inputmode="text" spellcheck="false" placeholder="通关后自动填入" readonly>
+                  <button class="wifi-action primary" type="button" id="wifiConnectButton">
+                    <svg aria-hidden="true" viewBox="0 0 24 24">
+                      <path d="m5 12 4 4L19 6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"/>
+                    </svg>
+                    连接
+                  </button>
+                </div>
+                <div class="crack-fragments" id="wifiPasswordMenu" aria-label="密钥槽"></div>
+                <div class="crack-puzzles" id="wifiPuzzleList" aria-label="破解小题"></div>
+                <div class="wifi-actions">
+                  <button class="wifi-action crack" type="button" id="wifiCrackButton">
+                    <svg aria-hidden="true" viewBox="0 0 24 24">
+                      <path d="M8 11V8a4 4 0 0 1 8 0v3M7 11h10a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2Z" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+                      <path d="M12 15v2" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"/>
+                    </svg>
+                    破解 Wi-Fi
+                  </button>
+                  <button class="wifi-action" type="button" id="wifiScanButton">
+                    <svg aria-hidden="true" viewBox="0 0 24 24">
+                      <path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"/>
+                      <circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                    信号检测
+                  </button>
+                  <button class="wifi-action real" type="button" id="wifiRealScanButton">
+                    <svg aria-hidden="true" viewBox="0 0 24 24">
+                      <circle cx="12" cy="12" r="9" fill="none" stroke="currentColor" stroke-width="2"/>
+                      <path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"/>
+                    </svg>
+                    真检测
+                  </button>
+                </div>
+                <p class="wifi-readout" id="wifiReadout" aria-live="polite">选择热点，启动破解，随机小游戏通关后连接。</p>
+              </section>
+            </div>
+          </section>
+        </section>
       </div>
-
-      <section class="remote" aria-label="空调遥控器">
-        <button class="control cold active" type="button" id="coldButton" aria-label="制冷" title="制冷">
-          <svg aria-hidden="true" viewBox="0 0 24 24">
-            <path d="M12 2v20M17 4l-5 4-5-4M17 20l-5-4-5 4M2 12h20M4 7l4 5-4 5M20 7l-4 5 4 5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
-          </svg>
-        </button>
-        <button class="control power" type="button" id="powerButton" aria-label="开关" title="开关">
-          <svg aria-hidden="true" viewBox="0 0 24 24">
-            <path d="M12 2v10" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"/>
-            <path d="M18.4 6.6a9 9 0 1 1-12.8 0" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"/>
-          </svg>
-        </button>
-        <button class="control hot" type="button" id="hotButton" aria-label="制热" title="制热">
-          <svg aria-hidden="true" viewBox="0 0 24 24">
-            <circle cx="12" cy="12" r="4" fill="none" stroke="currentColor" stroke-width="2"/>
-            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" fill="none" stroke="currentColor" stroke-linecap="round" stroke-width="2"/>
-          </svg>
-        </button>
-      </section>
-
-      <section class="remote stack" aria-label="温度">
-        <button class="control step" type="button" id="plusButton" aria-label="升温" title="升温">
-          <svg aria-hidden="true" viewBox="0 0 24 24">
-            <path d="m18 15-6-6-6 6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"/>
-          </svg>
-        </button>
-        <button class="control step" type="button" id="minusButton" aria-label="降温" title="降温">
-          <svg aria-hidden="true" viewBox="0 0 24 24">
-            <path d="m6 9 6 6 6-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.4"/>
-          </svg>
-        </button>
-      </section>
     </main>
 
     <footer class="footer">
       <span id="year"></span> © N.E.K.O Air
     </footer>
 
-    <script src="./script.js"></script>
+    <script src="./script.js?v=wifi-tune-arc"></script>
   </body>
 </html>
